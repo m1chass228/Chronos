@@ -1,0 +1,18 @@
+# build
+build/
+cmake-build*/
+CMakeFiles/
+CMakeCache.txt
+
+# deps
+_deps/
+
+# binaries
+*.o
+*.out
+*.a
+*.so
+*.exe
+
+# ninja
+*.ninja

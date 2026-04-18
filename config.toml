@@ -1,0 +1,9 @@
+[database]
+host = "127.0.0.1"
+port = 5432
+dbname = "chronos"
+user = "postgres"
+password = "12345"
+
+[storage]
+attachments_path = "/home/user/МоиДокументы/chronos_attachments" 
