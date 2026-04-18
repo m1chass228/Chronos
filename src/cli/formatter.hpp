@@ -60,12 +60,14 @@ public:
             // 2. Собираем контент и теги в одну большую строку
             std::string content_and_tags = note.content;
             if (!note.tags.empty()) {
-                content_and_tags += " "; // Пробел перед тегами
-                for (const auto& tag : note.tags) {
-                    std::string clean_tag = tag;
-                    // ... (вся твоя логика очистки тегов) ...
-                    if (!clean_tag.empty()) {
-                        content_and_tags += "#" + clean_tag + " ";
+                content_and_tags += " ";
+                for (size_t i = 0; i < note.tags.size(); ++i) {
+                    // Добавляем решетку к самому тегу
+                    content_and_tags += "#" + note.tags[i];
+
+                    // Если это не последний тег, добавляем запятую и пробел
+                    if (i < note.tags.size() - 1) {
+                        content_and_tags += ", ";
                     }
                 }
             }
