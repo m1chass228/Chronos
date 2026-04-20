@@ -10,6 +10,7 @@ add_library(chronos_core STATIC ${CORE_SOURCES})
 target_link_libraries(chronos_core PRIVATE uuid)
 # Линкуем Postgres и libpqxx
 target_link_libraries(chronos_core PRIVATE 
+    OpenSSL::Crypto
     CLI11::CLI11
     PostgreSQL::PostgreSQL 
     ${PQXX_LIBRARIES}

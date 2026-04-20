@@ -7,4 +7,4 @@ add_executable(chronos
 )
 
 # Линкуем ядро (оно уже само тянет Postgres)
-target_link_libraries(chronos PRIVATE CLI11::CLI11 chronos_core)
+target_link_libraries(chronos PRIVATE OpenSSL::Crypto CLI11::CLI11 chronos_core)

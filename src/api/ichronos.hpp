@@ -29,6 +29,13 @@ public:
 
     // получение заметок
     virtual std::optional<api::NoteDTO> getNoteById(const std::string& id) = 0;
+    
+    // получение заметок по аттачменту
+    virtual std::vector<NoteDTO> getNotesByAttachment(const std::string& attachment) = 0;
+    
+    // удаление аттачмента в заметках
+    virtual Response removeAttachment(const std::string& attachment) = 0;
+
 };
 
 }

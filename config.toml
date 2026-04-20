@@ -6,4 +6,4 @@ user = "postgres"
 password = "12345"
 
 [storage]
-attachments_path = "/home/user/МоиДокументы/chronos_attachments" 
+attachments_path = "/home/OpenSUSE-tumbleweed/Документы/chronos/"

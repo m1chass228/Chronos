@@ -34,9 +34,17 @@ public:
     // Удаление по ShortId
     virtual bool deleteNoteByShortId(const std::string& shortId) = 0;
 
+    // Получить все заметки с аттачей
+    virtual std::vector<domain::Note> getNotesByAttachment(const std::string& filePath) = 0;
+
+    // Удаление аттачи у всех заметок 
+    virtual bool deleteAttachment(const std::string& filePath) = 0;
+
 private:
     // Вспомогательная функция для парсинга времени из строки Postgres
     virtual domain::TimePoint parseTime(const std::string& ts) = 0;
+
+    virtual std::vector<std::string> parseArray(const std::string& pgArray) = 0;
 };
 
 // создание склада

@@ -9,7 +9,10 @@
 #include <vector>
 
 namespace chronos::cli::commands {
-    void executeAdd(api::IChronos* api, const std::string& content, const std::vector<std::string>& tags);
+    void executeAdd(api::IChronos* api, 
+                    const std::string& content, 
+                    const std::vector<std::string>& tags,
+                    const std::vector<std::string>& attachments);
     void executeList(api::IChronos* api, const std::vector<std::string>& tags);
     void executeRemove(api::IChronos* api, const std::vector<std::string>& ids);
     void executeSearch(api::IChronos* api, const std::string& query);
@@ -26,7 +29,7 @@ int main(int argc, char** argv) {
 
     // Переменные
     std::string content, query;
-    std::vector<std::string> tags, ids;
+    std::vector<std::string> tags, ids, attachments;
     int limit = 10;
 
     // --- ADD COMMAND ---
@@ -37,6 +40,10 @@ int main(int argc, char** argv) {
            ->type_name("TEXT");
     add_cmd->add_option("-t,--tag", tags, "Tags associated with the note")
            ->type_name("TAG");
+    
+    add_cmd->add_option("-a,--attach", attachments, "Paths to files to attach")
+           ->check(CLI::ExistingFile) // CLI11 сам проверит, существуют ли файлы перед запуском!
+           ->type_name("FILE");
 
     // --- LIST COMMAND ---
     auto* ls_cmd = app.add_subcommand("ls", "List your notes chronologically");
@@ -68,7 +75,7 @@ int main(int argc, char** argv) {
 
     try {
         if (add_cmd->parsed()) {
-            commands::executeAdd(chronosCore.get(), content, tags);
+            commands::executeAdd(chronosCore.get(), content, tags, attachments);
         }
         else if (ls_cmd->parsed()) {
             // Не забываем передать limit в executeList!
